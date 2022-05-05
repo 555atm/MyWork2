@@ -1,0 +1,39 @@
+/* #id .class */
+h1 { color:red; }
+
+body { 
+    background-image:url("./images/DSC_0179_3.JPG");
+    background-size:60%;
+}
+
+header,nav,main {margin:3px auto; padding:3px; }
+div {
+    border:solid ;
+    border-color: chartreuse;
+    border-radius:0%;
+}
+/*
+header { float:left; background-color:#f5f5f5; width:95%; }
+background-image:url=('./images/DSC_0046_7.JPG');
+main {float:left; width:95%; background-color:#f5f5f5; }
+footer { clear:both; width:95%; background-color: cadetblue; }
+*/
+
+/*
+*/
+
+
+
+/* JS用
+*/
+.pyonpyon {
+    animation: pyon 0.3s linear;
+    position: relative;
+}
+
+@keyframes pyon {
+    0% {top: 0}
+    50% {top:-17px}
+    100%{top: 0}
+}
+

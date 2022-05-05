@@ -1,0 +1,127 @@
+/* 細かい点はまだ検討していません。
+
+
+@media screen and (min-width:481px) {
+	.sp{
+		display: none;
+	}
+
+}
+
+@media screen and (max-width:480px) {
+	.pc{
+		display: none;
+	}
+
+}
+
+*/
+
+body {
+    background-size:95%;
+
+}
+
+p, a, label, option, input {
+    font-size: 1.2rem;
+}
+
+p.large {
+    font-size: 1.4rem;
+}
+
+p.correct {
+    font-size: 1.7rem;
+}
+
+
+.submit {
+    border:solid 0.5px;
+    border-radius: 3px;
+    background-color:rgb(113, 212, 245);
+    padding-top: 0.5px;
+    padding-bottom: 0.5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    text-decoration: none;
+    color:darkblue;
+  }
+
+  .btn {
+    border:solid 0.5px;
+    border-radius: 3px;
+    background-color:cornsilk;
+    padding-top: 0.5px;
+    padding-bottom: 0.5px;
+    padding-left: 3px;
+    padding-right: 3px;
+    text-decoration: none;
+    color:darkblue;
+  }
+  
+  
+
+div.header {
+    color:dodgerblue;
+    text-align: center;
+    background-image: url("../images/quiz_header.png");
+    background-size:115%;
+	filter: grayscale(50%);
+} 
+
+div.header_menu  {
+    background-color:#93bad1; 
+    width:100%;
+    float:right;
+}
+div.quiz_menu {
+    clear:both;
+    color:black;
+    background-color:#c4edc9; 
+    width:98%;
+	filter: grayscale(50%);
+} 
+
+
+
+.std_image{
+	width:160px;
+	height:160px;
+	position:absolute;
+	left:170px;
+	top:2px;
+	z-index:1;
+}
+
+
+div {border:0.5px solid ; border-color:#06cd21 ;   margin:2px auto; padding:2px;} 
+#wrap {background-color:#d5f4d9; width:98%;}
+header {background-color:#d5f4d9; width:98%;}
+div.furikaeri {background-color:#c4edc9; width:98%; text-align: center;}
+
+#div1 {background-color:#c4edc9; width:98%; text-align: center;}
+#div2 {background-color:#c4edc9; width:98%; text-align: center;}
+#div3 {background-color:#c4edc9; width:98%; text-align: center;}
+#div4 {background-color:#c4edc9; width:98%; text-align: center;}
+#answer {background-color:#c4edc9; width:98%; text-align: center;}
+#div6 {background-color:#c4edc9; width:98%; text-align: center;}
+
+main {float:left; width:98%; background-color:#f5f5f5; }
+footer { clear:both; width:98%; background-color: cadetblue; text-align: center;}
+/*
+*/
+
+
+
+/* JS用 */
+.pyonpyon {
+    animation: pyon 0.3s linear;
+    position: relative;
+}
+
+@keyframes pyon {
+    0% {top: 0}
+    50% {top:-17px}
+    100%{top: 0}
+}
+

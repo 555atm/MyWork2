@@ -1,0 +1,132 @@
+
+input:required{
+  background: rgb(246, 239, 100); 
+}
+input:valid{
+  background: transparent;
+}
+input:default{
+  background:bisque;
+}
+
+
+body {
+  background-image: url("./images/KAZUHIRO171013022.jpg");
+  background-size: cover;
+}
+
+header,main,footer {
+  text-align: center;
+}
+
+
+div {
+  border:solid 1px;
+  border-color:deepskyblue;
+  border-radius:0%;
+  text-align: center;
+}
+
+div.header {
+  background-color:lightsteelblue;
+}
+
+p, dd, dt {
+  font-size: 1.2rem;
+}
+
+
+p.error {
+  color:red;
+}
+
+
+span#time{
+  font-size: 18px;
+  color: #FFFFFF;
+  background-color:grey;
+  padding: 0px 8px;
+}	
+
+.std_image{
+	width:220px;
+	height:50px;
+	position:absolute;
+	right:40px;
+	top:0px;
+	z-index:1;
+}
+
+label.menu_btn {
+  color:black;
+  font-size:1.4rem;
+}
+
+span.required {
+	background-color: #f0578c;
+	color: rgb(235, 232, 232);
+	font-size: 90%;
+	padding: 2px;
+	margin-left: 10px;
+}
+
+.btn {
+  border:solid 0.5px;
+  border-radius: 3px;
+  background-color:cornsilk;
+  padding-top: 0.5px;
+  padding-bottom: 0.5px;
+  padding-left: 3px;
+  padding-right: 3px;
+  text-decoration: none;
+  color:darkblue;
+}
+
+label.do_quiz {
+  margin: 10px;
+  padding: 10px;
+}
+
+/* JS用
+*/
+.pyonpyon {
+  animation: pyon 0.3s linear;
+  position: relative;
+}
+
+@keyframes pyon {
+  0% {top: 0}
+  50% {top:-17px}
+  100%{top: 0}
+}
+
+
+
+
+
+#slider {
+  overflow: hidden;
+  width: 310px;
+  border: 1px solid #000;
+  margin: 10px auto;
+  padding: 0px;
+}
+#photos {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+#photos li {
+  display: inline-box;
+  float: left;
+  width: 300px;
+  margin: 5px;
+  padding: 0px;
+}
+#photos li img {
+  width: 300px;
+  border: 1px solid #000;
+  margin: 0px;
+  padding: 0px;
+}
+

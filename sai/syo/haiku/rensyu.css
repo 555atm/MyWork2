@@ -1,0 +1,29 @@
+body {
+  font-size:1.2em;
+}
+
+
+.content{
+  width: 100%;
+  height: 100%;
+  border : 1px solid #000;
+  /*背景画像の設定*/
+  background-image: url('../images/bamboo1.jpg');
+  background-size: cover;
+}
+
+.bg {
+  font-size:1.2em;
+}
+
+p {
+  color:black;
+  font-size:1.2em;
+  height:100%;
+}
+
+
+div {
+  border:solid 1px;
+}
+

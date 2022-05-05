@@ -1,0 +1,56 @@
+<html>
+	<head>
+	</head>
+
+	<body>
+	<script language="JavaScript">
+<!--
+	function calc(){
+
+		var total=0;
+		var elems = document.getElementsByName("check1");
+
+		for (var i = 0; i < elems.length; i++) {
+			if(elems[i].checked) total += elems.value;
+		}
+
+		document.getElementById('combo').textContent = total;
+	}
+-->
+	window.addEventListener('DOMContentLoaded',function(){
+
+		const scoreBox = document.getElementById('score-box');
+		const score = document.getElementsByName('score');
+		let sumScore = document.getElementById('sum-score');
+		scoreBox.addEventListener('change',scoreCalc,false);
+
+		function scoreCalc(){
+
+			let total = 0;
+
+			for(let i = 0; i < score.length; i++){
+
+				if(score[i].checked){
+					total += Number(score[i].value);
+				}
+			}
+
+			sumScore.textContent = total;
+		}
+	});
+  	</script>
+
+			<label>コンボ数</label>
+			<br>
+			<div id="score-box">
+				<input type="checkbox" id="check1" value="1" name="score" />波動拳
+				<input type="checkbox" id="check2" value="2" name="score" />昇竜拳
+				<input type="checkbox" id="check3" value="1" name="score" />竜巻旋風脚
+				<input type="checkbox" id="check4" value="5" name="score" />真空波動拳
+				<input type="checkbox" id="check5" value="3" name="score" />真昇竜拳
+				<br>
+  				<p><span id="sum-score">0</span>コンボ！</p>
+			</div>
+  	</body>
+
+</html>

@@ -1,0 +1,124 @@
+body {
+  /*位置の設定*/
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background-image: url("../images/bamboo4.jpg");
+  background-color: rgba(255, 255, 255, 0.1);
+  background-size: cover;
+  color:black;
+}
+
+h1,h2,h3 {
+  color:azure;
+  font-family:'HG行書体';
+  /* 和風フォントの候補↓
+  font-family: serif;  
+  'ＭＳ 明朝'
+  'HG行書体'
+  'SimSun'
+  'SimHei'
+  */
+}
+
+p,label {
+  color:black;
+  font-size:1.2em;
+  height:100%;
+}
+p.rules {
+  color:black;
+  font-size:1.0em;
+  height:100%;
+}
+
+
+div {
+  text-align: center;
+  /* border:solid 1px; */
+  font-weight: bold;
+  border-color:whitesmoke;
+  border-radius:0%;
+}
+
+div.header {
+  background-color:#6b8e23;
+  /*和風な色の候補
+  #006400 #556b2f #6b8e23 #808000 #bdb76b #eee8aa  
+  */
+}
+
+
+div.wrap {
+  background-color:whitesmoke;
+  background-color: rgba(255, 255, 255, 0.5);
+  width:98%;
+}
+div.contents {
+  float:left;
+  width:60%;
+}
+div.rules {
+  font-size: 1.0rem;
+  text-align: left;
+  float:left;
+  width:35%;
+}
+
+div.footer {
+  clear:both;
+}
+
+div.space {
+  float:left;
+  height:60%;
+  width:13%;
+}
+
+div.haiku_list {
+  float:left;
+  text-align: left;
+  height:60%;
+  width:85%;
+}
+
+
+.std_image{
+	width:220px;
+	height:50px;
+	position:absolute;
+	right:40px;
+	top:0px;
+	z-index:1;
+}
+
+.btn {
+  border:solid 0.5px;
+  border-radius: 5px;
+  background-color:cornsilk;
+  padding: 3px;
+  text-decoration: none;
+  color:darkblue;
+}
+
+
+
+
+div.tategaki {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 2rem;
+  writing-mode: vertical-rl;
+  font-family: 'HG行書体';
+}
+
+div.div_debug1 {
+  background-color: whitesmoke;
+}
+
+p.error {
+  color:red;
+}
