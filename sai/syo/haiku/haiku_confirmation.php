@@ -15,7 +15,7 @@ if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 
 // htmlspecialcharsのショートカット
 function h($value) {
-	return htmlspecialchars($value, ENT_QUOTES);
+	return htmlspecialchars($value, ENT_QUOTES,"utf-8");
 }
 
 
@@ -38,7 +38,7 @@ function h($value) {
       <h2>投稿内容の確認<h2>
     </div>
     <div class="header_menu" style="text-align: right">
-              <a href="haiku_s1.php" class="btn">前の画面に戻る</a>
+              <a href="post.php" class="btn">前の画面に戻る</a>
               <a href="../menu.php" class="btn">TOPへ</a>
               <a href="logout.php" class="btn">ログアウト</a>
     </div>
@@ -57,11 +57,20 @@ function h($value) {
         </div>
         <br>
 
+        <form action="post.php" method="post">
+          <input type="hidden" name="modify" value="1">
+          <input type="hidden" name="kamigo" value="<?php $_SESSION['kamigo']; ?>">
+          <input type="hidden" name="nakashichi" value="<?php $_SESSION['nakashichi']; ?>">
+          <input type="hidden" name="shimogo" value="<?php $_SESSION['shimogo']; ?>">
+          <input type="submit" value="投稿を修正する">
+        </form>
+
+        
         <form action="haiku_done.php" method="post">
           <input type="hidden" name="kamigo" value="<?php $_SESSION['kamigo'] ?>">
           <input type="hidden" name="nakashichi" value="<?php $_SESSION['nakashichi'] ?>">
           <input type="hidden" name="shimogo" value="<?php $_SESSION['shimogo'] ?>">
-          <a href="haiku_s1.php" class="btn">投稿を修正する</a>
+          <!-- <a href="post.php" class="btn">投稿を修正する</a> -->
           <input type="submit" value="投稿" class="btn">
         </form>
       </div>
@@ -79,6 +88,9 @@ function h($value) {
       <pre><?php echo 'print_r($_COOKIE)の結果→   '; print_r($_COOKIE); ?></pre>
       <pre><?php echo 'print_r($_POST)の結果→   '; print_r($_POST); ?></pre>
     </div>
+    <!-- 
+    -->
+
   </div>
 </body>
 </html>

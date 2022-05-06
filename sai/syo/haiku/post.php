@@ -13,13 +13,14 @@ if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 	exit();
 }
 
+
 // htmlspecialcharsのショートカット
 function h($value) {
   return htmlspecialchars($value, ENT_QUOTES, "UTF-8");
 }
 
-/*
 
+/*
 function h($value) {
   if (is_array($value)) {
     return array_map("h", $value);
@@ -81,62 +82,79 @@ $otonokazushimo = $mojinokazushimo - $yayuyonokazushimo;
 ////// 投稿内容に何かしらエラーあれば、、まずエラー用変数にエラーメッセージを格納。
 //// 入力チェック 上の句
 //【上の句CHECK⓪】投稿ボタン押されたが入力無しなら、エラーMSGを変数に格納。
-if(!empty($_POST['done']) && empty($_POST['kamigo'])) {
-  $errorKami[] = 'NG! 上の句を入力してください<br>';
+
+if(!empty($_POST['done'])){
+  if(empty($_POST['kamigo'])) {
+    $errorKami[] = 'NG! 上の句を入力してください<br>';
+  }
+  //【チェック①】投稿ボタン押されたが、平仮名カタカナのみで構成されていなければエラーMSGを変数に格納。
+  if (!preg_match("/^[ぁ-ゞァ-ヾ]+$/u", $_POST['kamigo'])){
+    $errorKami[] = 'NG! 上の句を平仮名のみにして下さい';
+  } 
+  //【チェック②】
+  if ($otonokazukami <=3 || $otonokazukami >= 7 ) {
+    $errorKami[] = 'NG！上の句の「音数」は4音～6音にして下さい';
+  }
+  //【チェック③】投稿した上の句'のなかに'課題のランダム文字'が含まれていないならエラー
+  if(strpos($_SESSION["kamigo"],$_SESSION["kami_random"]) === false){
+    $errorKami[] = 'NG! 上の句に課題文字『' . $_SESSION['kami_random'] .'』を最低1回含めてください！<br>';
+  }
+  /*
+  if(!empty($_POST['done']) && (strstr($_SESSION['kamigo'],$_SESSION['kami_random']) ==false)){
+    $errorKami[] = 'NG! 上の句：課題文字『' . $_SESSION['kami_random'] .'』ナシ！<br>';
+  }
+  */
+
+  //// 入力チェック 中の句
+  //【中の句CHECK⓪】投稿ボタン押されたが入力無しなら、エラーMSGを変数に格納。
+  if(empty($_POST['nakashichi'])) {
+    $errorNaka[] = 'NG! 中の句を入力してください<br>';
+  };
+  //【チェック①】投稿ボタン押されたが、平仮名カタカナのみで構成されていなければエラーMSGを変数に格納。
+  if (!preg_match("/^[ぁ-ゞァ-ヾ]+$/u", $_POST['nakashichi'])){
+      $errorNaka[] = 'NG! 中の句を平仮名のみにしてください';;
+  } 
+  //【チェック②】
+  if ($otonokazunaka < 6 || $otonokazunaka > 8 ) {
+    $errorNaka[] = 'NG！中の句の「音数」は6音～8音にして下さい';
+  }
+  //【チェック③】投稿した中の句'のなかに'課題のランダム文字'が含まれていないならエラー
+  if(strpos($_SESSION["nakashichi"],$_SESSION["naka_random"]) === false){
+    $errorNaka[] = 'NG! 中の句に課題文字『' . $_SESSION['naka_random'] .'』を最低1回含めてください！<br>';
+  } 
+
+  //// 入力チェック 下の句
+  //【下の句CHECK⓪】投稿ボタン押されたが入力無しなら、エラーMSGを変数に格納。
+  if(empty($_POST['shimogo'])) {
+    $errorShimo[] = 'NG! 下の句を入力してください<br>';
+  };
+  //【チェック①】投稿ボタン押されたが、平仮名カタカナのみで構成されていなければエラーMSGを変数に格納。
+  if (!preg_match("/^[ぁ-ゞァ-ヾ]+$/u", $_POST['shimogo'])){
+    $errorShimo[] = 'NG! 下の句を平仮名のみにして下さい';;
+  }
+  //【チェック②】
+  if ($otonokazushimo < 4 || $otonokazushimo > 6 ) {
+    $errorShimo[] = 'NG！下の句の「音数」は4音～6音にして下さい';
+  }
+  //【チェック③】投稿した下の句'のなかに'課題のランダム文字'が含まれていないならエラー
+  if(strpos($_SESSION["shimogo"],$_SESSION["shimo_random"]) === false){
+    $errorShimo[] = 'NG! 下の句に課題文字『' . $_SESSION['shimo_random'] .'』を最低1回含めてください！<br>';
+  } 
 }
-//【チェック①】投稿ボタン押されたが、平仮名カタカナのみで構成されていなければエラーMSGを変数に格納。
-if (!preg_match("/^[ぁ-ゞァ-ヾ]+$/u", $_POST['kamigo']) && !empty($_POST['done'])){
-  $errorKami[] = 'NG! 上の句を平仮名のみにして下さい';
-} 
-//【チェック②】
-if (!empty($_POST['done']) && ($otonokazukami <=3 || $otonokazukami >= 7 )) {
-  $errorKami[] = 'NG！上の句の「音数」は4音～6音にして下さい';
-}
-//【チェック③】投稿した上の句'のなかに'課題のランダム文字'が含まれていないならエラー
-if(!empty($_POST['done']) && strpos($_SESSION["kamigo"],$_SESSION["kami_random"]) === false){
-  $errorKami[] = 'NG! 上の句に課題文字『' . $_SESSION['kami_random'] .'』を最低1回含めてください！<br>';
-}
+
 /*
-if(!empty($_POST['done']) && (strstr($_SESSION['kamigo'],$_SESSION['kami_random']) ==false)){
-  $errorKami[] = 'NG! 上の句：課題文字『' . $_SESSION['kami_random'] .'』ナシ！<br>';
+} else {
+  $_SESSION['kamigo'] = null;
+  $_SESSION['nakashichi'] = null;
+  $_SESSION['shimogo'] = null;
+}
+
+if(!empty($_POST['modify'])){
+  $errorShimo[] = null;
+  $errorShimo[] = null;
+  $errorShimo[] = null;
 }
 */
-
-//// 入力チェック 中の句
-//【中の句CHECK⓪】投稿ボタン押されたが入力無しなら、エラーMSGを変数に格納。
-if(!empty($_POST['done']) && empty($_POST['nakashichi'])) {
-  $errorNaka[] = 'NG! 中の句を入力してください<br>';
-};
-//【チェック①】投稿ボタン押されたが、平仮名カタカナのみで構成されていなければエラーMSGを変数に格納。
-if (!empty($_POST['done']) && !preg_match("/^[ぁ-ゞァ-ヾ]+$/u", $_POST['nakashichi'])){
-    $errorNaka[] = 'NG! 中の句を平仮名のみにしてください';;
-} 
-//【チェック②】
-if (!empty($_POST['done']) && ($otonokazunaka < 6 || $otonokazunaka > 8 )) {
-  $errorNaka[] = 'NG！中の句の「音数」は6音～8音にして下さい';
-}
-//【チェック③】投稿した中の句'のなかに'課題のランダム文字'が含まれていないならエラー
-if(!empty($_POST['done']) && strpos($_SESSION["nakashichi"],$_SESSION["naka_random"]) === false){
-  $errorNaka[] = 'NG! 中の句に課題文字『' . $_SESSION['naka_random'] .'』を最低1回含めてください！<br>';
-} 
-
-//// 入力チェック 下の句
-//【下の句CHECK⓪】投稿ボタン押されたが入力無しなら、エラーMSGを変数に格納。
-if(!empty($_POST['done']) && empty($_POST['shimogo'])) {
-  $errorShimo[] = 'NG! 下の句を入力してください<br>';
-};
-//【チェック①】投稿ボタン押されたが、平仮名カタカナのみで構成されていなければエラーMSGを変数に格納。
-if (!preg_match("/^[ぁ-ゞァ-ヾ]+$/u", $_POST['shimogo']) && !empty($_POST['done'])){
-  $errorShimo[] = 'NG! 下の句を平仮名のみにして下さい';;
-}
-//【チェック②】
-if (!empty($_POST['done']) && ($otonokazushimo < 4 || $otonokazushimo > 6 )) {
-  $errorShimo[] = 'NG！下の句の「音数」は4音～6音にして下さい';
-}
-//【チェック③】投稿した下の句'のなかに'課題のランダム文字'が含まれていないならエラー
-if(!empty($_POST['done']) && strpos($_SESSION["shimogo"],$_SESSION["shimo_random"]) === false){
-  $errorShimo[] = 'NG! 下の句に課題文字『' . $_SESSION['shimo_random'] .'』を最低1回含めてください！<br>';
-} 
 
 
 
@@ -171,7 +189,7 @@ if (empty($errorKami) && empty($errorNaka) && empty($errorShimo) && !empty($_POS
     <h1>お遊び俳句ゲーム<h1>
     <h1>開始！</h1> 
     <div class="header_menu" style="text-align: right">
-            <a href="haiku_gamelevel.php" class="btn">前の画面に戻る</a>
+            <a href="gamelevel.php" class="btn">前の画面に戻る</a>
             <a href="../menu.php" class="btn">TOPへ</a>
             <a href="../logout.php" class="btn">ログアウト</a>
     </div>
@@ -274,8 +292,9 @@ if (empty($errorKami) && empty($errorNaka) && empty($errorShimo) && !empty($_POS
 </div>
 
 
-<div class=div_debug1>
-<?php
+
+  <div class=div_debug1>
+    <?php
 /////入力文字チェック【絶対消すな！！】////////////////////////////////////////
 ////////////////////////////////////////////////////////////
 echo '<h3>総合チェック</h3>';
@@ -306,9 +325,12 @@ echo '<br>';
   <pre><?php echo 'print_r($errorKami)の結果→   '; print_r($errorKami); ?></pre>
   <pre><?php echo 'print_r($errornaka)の結果→   '; print_r($errorNaka); ?></pre>
   <pre><?php echo 'print_r($errorshimo)の結果→   '; print_r($errorShimo); ?></pre>
-
-
+  
+  
 </div>
+<!-- 
+
+-->
 
 </body>
 </html>

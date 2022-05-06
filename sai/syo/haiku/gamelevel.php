@@ -18,6 +18,7 @@ function h($value) {
 	return htmlspecialchars($value, ENT_QUOTES);
 }
 
+
 ////イレギュラーな操作で『ランダム文字・俳句のセッションデータ』が残っていた場合に備えて、消去。
 //unset($_SESSION[’value’]);だと動くけど『今後良くない』とwarning出てしまうので、
 //$_SESSION[’value’] = array(); の形に修正した。
@@ -72,7 +73,7 @@ if(!empty($_SESSION['shimogo'])) {
   <br>
   <br>
   <p>ゲームレベルを選択してください</p>
-    <form action="haiku_gamelevel.php" method="post">
+    <form action="gamelevel.php" method="post">
     <label><input type="radio" name="gamelevel" value="gamelv1">[Lv1] 課題文字なし　　　　　　　　　　　　　</label><br>
     <label><input type="radio" name="gamelevel" value="gamelv2">[Lv2] 課題文字:上の句にひらがな1文字　　　　</label><br>
     <label><input type="radio" name="gamelevel" value="gamelv3" checked>[Lv3] 課題文字: 上・中・下の句にそれぞれ1文字</label><br>
@@ -92,7 +93,7 @@ if(!empty($_SESSION['shimogo'])) {
             "な","に","ぬ","ね","の","は","ば","ぱ",
             "ひ","び","ぴ","ふ","ぶ","ぷ","へ","べ","ぺ","ほ","ぼ","ぽ",
             "ま","み","む","め","も","ゃ","や","ゅ","ゆ","ょ","よ",
-            "ら","り","る","れ","ろ","わ","ゐ","ゑ","を"];
+            "ら","り","る","れ","ろ","わ","を"];
         $r_str = null;
         for ($i = 0; $i < $length; $i++) {
             $r_str .= $hiragana[rand(0, count($hiragana) - 1)];
@@ -102,7 +103,7 @@ if(!empty($_SESSION['shimogo'])) {
 
       // 選択されたゲームレベルを確認し、進む OR 【【選びなおす】】
       $formStart = '
-      <form action="haiku_s1.php" method="post">
+      <form action="post.php" method="post">
       <input type="hidden" name="$subChar[]" value="$subChar[]">
       <label></label>
       <br>

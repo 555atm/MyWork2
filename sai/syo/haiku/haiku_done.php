@@ -23,8 +23,8 @@ function h($value) {
 	/*
 	// 投稿完了。TOPへ戻る
 	if (!empty($_POST)) {
-		header('Location: ../haiku_gamelevel.php'); exit();
-		// ↑投稿処理の最後にHeaderファンクションで再度haiku_gamelevel.phpにジャンプする。
+		header('Location: ../gamelevel.php'); exit();
+		// ↑投稿処理の最後にHeaderファンクションで再度gamelevel.phpにジャンプする。
 		// こうすることで再読み込みボタンやF5からの『フォーム再送信画面』で投稿が重複することを防げる。
 	}
 	*/
@@ -78,12 +78,12 @@ function h($value) {
 				$_SESSION['kami_random'] = array();
 				$_SESSION['naka_random'] = array();
 				$_SESSION['shimo_random'] = array();
-				$_SESSION['kamigo'] = array();
-				$_SESSION['nakashichi'] = array();
-				$_SESSION['shimogo'] = array();
+				$_SESSION['kamigo'] = null;
+				$_SESSION['nakashichi'] = null;
+				$_SESSION['shimogo'] = null;
 			} else {
 				echo '<p>投稿内容が空です。やり直してください</p>';
-				echo '<a href=”../haiku_gamelevel.php” class="btn">メニューへ戻る</a>';
+				echo '<a href=”../gamelevel.php” class="btn">メニューへ戻る</a>';
 			}
 		}
 	?>

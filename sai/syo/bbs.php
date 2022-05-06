@@ -90,7 +90,7 @@ function makeLink($value) {
 		<div class="header_menu" style="text-align: right">
 			<a href="./menu.php" class="btn">メニューへ</a>
 			<a href="./quiz/quiz_post.php" class="btn">3択クイズ投稿へ</a>
-			<a href="./haiku/haiku_gamelevel.php" class="btn">お遊び俳句ゲームへ</a>
+			<a href="./haiku/gamelevel.php" class="btn">お遊び俳句ゲームへ</a>
 			<a href="logout.php" class="btn">ログアウト</a>
 		</div>
 	</div>

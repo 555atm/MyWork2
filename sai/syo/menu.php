@@ -42,7 +42,7 @@ function h($value) {
   <div class="top_menu">
     <h2>メニュー</h2>
     <label class="menu_btn">お遊び俳句ゲームに挑戦☆</label>
-    <a href="./haiku/haiku_gamelevel.php" class="btn">START</a><br><br>
+    <a href="./haiku/gamelevel.php" class="btn">START</a><br><br>
     <label class="menu_btn">お遊び俳句の作品を閲覧(工事中)</label>
     <a href="./haiku/haiku_read.php" class="btn">START</a><br><br>
 

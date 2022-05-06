@@ -1,0 +1,30 @@
+
+
+端的に言うと、お遊び俳句投稿ゲームにて、
+『俳句投稿⇒修正⇒投稿』という機能がうまく作れていません。
+
+
+
+http://localhost/sai/syo/login.php
+　↓　ログイン
+http://www.localhost:8888/sai/syo/menu.php
+　↓　お遊び俳句ゲームに挑戦　をクリック
+http://www.localhost:8888/sai/syo/haiku/gamelevel.php
+　↓　[Lv3] 課題文字: 上・中・下の句にそれぞれ1文字　を『選択』して『ゲーム開始』ボタンをクリック
+　↓
+http://www.localhost:8888/sai/syo/haiku/post.php
+
+【事象】
+	★★★この画面（post.php）で、３つの入力フォームに
+	『<br /><b>Warning</b>:  htmlspecialchars() expects parameter 1 to be string, array given 
+	　in <b>C:\xampp\htdocs\sai\syo\haiku\haiku_s1.php</b> on line <b>18</b><br />』
+	　といったエラーが出力されてしまう
+
+⇒改善案として、86行目のif文（）に、
+　以下のelse文をつけてみたのですが、
+　そうしたら今度は、
+　『投稿内容の確認』ボタン⇒『投稿を修正する』ボタン　を押すと投稿画面（post.php）にて投稿内容が消えてし合う
+　という状態になり、
+　うまく一連の処理が機能してくれない状態です。
+
+
