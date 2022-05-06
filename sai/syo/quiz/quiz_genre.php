@@ -1,4 +1,9 @@
 ﻿<?php
+
+//// 0.ページが表示された時点で走る必須の処理
+
+//ログインしているかチェック
+
 session_start();
 require('../dbconnect.php');
 if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
@@ -7,6 +12,7 @@ if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 	$members = $db->prepare('SELECT * FROM members WHERE id=?');
 	$members->execute(array($_SESSION['id']));
 	$member = $members->fetch();
+  $_SESSION['member'] = $member;
 } else {
 	// ログインしていない
 	header('Location: ../login.php');
@@ -18,8 +24,8 @@ function h($value) {
 	return htmlspecialchars($value, ENT_QUOTES, "UTF-8");
 }
 
-//↓開発用。あとで消す↓
-//これから出題されるクイズの件数『 $_SESSION['quiz_count'] 』をカウントして表示したい↓考え中↓
+
+//// ジャンルごとのクイズ件数を取得
 
 //【あくまで参考】登録されているクイズの『全件数』をカウントして表示したい↓
 $quiz_count = $db->prepare('SELECT COUNT(*) AS quiz_count FROM quiz_book');
@@ -62,7 +68,7 @@ while ($quiz = $questions->fetch()) {
   <script type="text/javascript" src="../main.js"></script>
   <script type="text/javascript" src="quiz.js"></script>
   <h1><span class="pyonpyon">3択</span>クイズ！<span class="pyonpyon"></span></h1>
-	<h2><?php echo h($member['user_name']); ?>さんが挑戦中。</h2>
+	<h2><?php echo h($_SESSION['member']['user_name']); ?>さんが挑戦中。</h2>
 	<div class="header_menu" style="text-align: right">
 			<a href="../menu.php" class="btn">TOPへ</a>
 			<a href="../logout.php" class="btn">ログアウト</a>
@@ -72,12 +78,12 @@ while ($quiz = $questions->fetch()) {
 <div class="quiz_menu">
   <div id="div1">
     <p>メニュー1: 全ジャンルのランダムクイズに挑戦！！</p>
-    <p>※ 全ての問題から、選んだ数だけの問題数がランダムに出題されます。</p>
+    <p>　　　　　　　　　　※全ての問題から、選んだ数だけの問題数がランダムに出題されます。</p>
 
     <?php
       // 全てのクイズと、その中身を表示
       unset($_SESSION['syutsudai']);
-      $stmt = $db->prepare('SELECT * FROM quiz_book');
+      $stmt = $db->prepare('SELECT * FROM quiz_book ORDER BY RAND()');
       //$stmt->bindValue(':keyword', $keyword, PDO::PARAM_STR);
       $stmt->execute();
       //$allquiz = $stmt->fetchAll(); 
@@ -107,16 +113,14 @@ while ($quiz = $questions->fetch()) {
   </div>
 
 
-  <!-- ドロップダウンで選択 -->
   <div id="div2">
     <p>メニュー2: ジャンルを絞ってランダムクイズに挑戦！！</p>
-    <p> ※ ジャンルを一つ選択し、指定した問題数でクイズが出題されます。</p>
+    <p> 　　　　　　　※ ジャンルを一つ選択し、指定した問題数でクイズが出題されます。</p>
     <form action="quiz.php" method="post">
       <select name="selected_genre" class="selected_genre">
         <?php 
-          // ↓課題１：下記を関数にできない。sql文がエラーになる。
           // ジャンルの一覧を取得
-          $genres = $db->query('SELECT genre,COUNT(*) as genre_count FROM quiz_book group by genre');
+          $genres = $db->query('SELECT genre,COUNT(*) as genre_count FROM quiz_book group by genre  ORDER BY RAND()');
           while ($genre = $genres->fetch()){
             echo '<option value="' . $genre['genre'] .'">' . $genre['genre'] . '(' . $genre['genre_count'] . '問)</option>';
             //echo '<p>' . $genre['genre'] . $genre['genre_count'] . '</p>';
@@ -144,8 +148,8 @@ while ($quiz = $questions->fetch()) {
   </div>
 
 
-
-  <div>
+  <!--
+  <div id="div3">
     <p>メニュー3 ジャンルを選択してクイズを遊ぶ【未完成】</p>
     <?php
     /*考え中
@@ -190,6 +194,7 @@ while ($quiz = $questions->fetch()) {
     <?php
     echo '【開発用】全クイズ件数は' . $_SESSION['quiz_count'] . '件です';
     ?>
+  -->
 
   </div>
 </div>
@@ -198,8 +203,7 @@ while ($quiz = $questions->fetch()) {
 
 
 <div class=div_debug1>
-
-  
+    <p>↓以下は開発用の記述です↓</p>
     <p>■今後の予定■
       ・チェックボックスでクイズを絞る　
          ★★連番振るーROW_NUMBER()関数？ as quiz_sequence→$quiz[quiz_sequence]★★

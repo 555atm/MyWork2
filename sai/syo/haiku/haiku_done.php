@@ -1,4 +1,8 @@
 ﻿<?php
+
+//// 0.ページが表示された時点で走る必須の処理
+
+//ログイン中かチェック
 session_start();
 require('../dbconnect.php');
 if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
@@ -17,18 +21,6 @@ if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 function h($value) {
 	return htmlspecialchars($value, ENT_QUOTES);
 }
-
-
-
-	/*
-	// 投稿完了。TOPへ戻る
-	if (!empty($_POST)) {
-		header('Location: ../gamelevel.php'); exit();
-		// ↑投稿処理の最後にHeaderファンクションで再度gamelevel.phpにジャンプする。
-		// こうすることで再読み込みボタンやF5からの『フォーム再送信画面』で投稿が重複することを防げる。
-	}
-	*/
-
 
 ?>
 <!DOCTYPE html>
@@ -73,14 +65,15 @@ function h($value) {
 					$_SESSION['shimo_random']
 				));
 				echo '<p>投稿を完了しました。</p>';
-				//unset($_SESSION[’value’]);だと動くけど『今後良くない』とwarning出てしまうので、
-				//$_SESSION[’value’] = array(); の形に修正した。
+				// unset($_SESSION[’value’]);だと動くけど『今後良くない』とwarning出てしまうので、
+				//  $_SESSION[’value’] = array(); の形に修正した。
 				$_SESSION['kami_random'] = array();
 				$_SESSION['naka_random'] = array();
 				$_SESSION['shimo_random'] = array();
 				$_SESSION['kamigo'] = null;
 				$_SESSION['nakashichi'] = null;
 				$_SESSION['shimogo'] = null;
+				$_SESSION['gamelevel'] = null;
 			} else {
 				echo '<p>投稿内容が空です。やり直してください</p>';
 				echo '<a href=”../gamelevel.php” class="btn">メニューへ戻る</a>';
@@ -112,6 +105,7 @@ function h($value) {
 </div>
 
 <div class=div_debug1>
+	<p>↓以下は開発用の記述です↓</p>
 	<pre><?php	echo 'var_dump($_SESSION)の結果→   ';	var_dump ($_SESSION); ?></pre>
 	<pre><?php echo 'print_r($_SESSION)の結果→   '; print_r($_SESSION); ?></pre>
 	<pre><?php echo 'print_r($_COOKIE)の結果→   '; print_r($_COOKIE); ?></pre>

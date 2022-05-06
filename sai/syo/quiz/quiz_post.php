@@ -1,4 +1,9 @@
 ﻿<?php
+
+//// 0.ページが表示された時点で走る必須の処理
+
+//ログインしているかチェック
+
 	session_start();
 	require('../dbconnect.php');
 	if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
@@ -58,7 +63,7 @@
 <div class="header">
   <h1>[3択クイズ] 投稿画面</h1>
   <dl>
-			<p><?php echo h($member['user_name']); ?>さん、クイズの投稿をどうぞ♪</p>
+			<p><?php echo h($_SESSION['member']['user_name']); ?>さん、クイズの投稿をどうぞ♪</p>
 			<p class="std_image"><img src="../images/sideways.png" width="90%" height="90%" alt="sideways" title="sideways"></p>
 			<div class="header_menu" style="text-align: right">
 				<a href="../menu.php" class="btn">TOPへ</a>

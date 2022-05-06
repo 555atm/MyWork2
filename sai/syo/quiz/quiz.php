@@ -1,4 +1,9 @@
 ﻿<?php
+
+//// 0.ページが表示された時点で走る必須の処理
+
+//ログインしているかチェック
+
 session_start();
 require('../dbconnect.php');
 if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
@@ -19,7 +24,7 @@ function h($value) {
 }
 
 
-// ページが読み込まれたらクイズを表示する
+//// ページが読み込まれたらクイズを表示する
 
 // ランダムにクイズを3問出題する用??
 $_SESSION['syutsudai'];
@@ -79,8 +84,6 @@ if (($_POST['monme']=='1')){
 } else {
 	echo '予期せぬエラーです。';
 }
-//↓開発用。あとで消す↓
-echo '【開発用】出題中のクイズIDは' . $_SESSION['syutsudai'][$_SESSION['syutsudai_index']] . 'で、全' . $_SESSION['zenbude'] . '問中の、第' . $_SESSION['monme'] . '問目、$_SESSION[syutsudai]のインデックスは' . $_SESSION['syutsudai_index'] .'です';
 
 // $id = $_SESSION['monme'];
 $questions = $db->prepare('SELECT * FROM quiz_book WHERE id=:id2');
@@ -173,6 +176,11 @@ $quiz_book = $question->fetchAll();
 
 <!-- デバッグ用 
 <div class=div_debug1>
+	//↓以下は開発用。あとで消す↓
+	<?php
+	echo '【開発用】出題中のクイズIDは' . $_SESSION['syutsudai'][$_SESSION['syutsudai_index']] . 'で、全' . $_SESSION['zenbude'] . '問中の、第' . $_SESSION['monme'] . '問目、$_SESSION[syutsudai]のインデックスは' . $_SESSION['syutsudai_index'] .'です';
+	?>
+
 	<pre><?php	echo 'var_dump($_SESSION)の結果→   ';	var_dump ($_SESSION); ?></pre>
 	<pre><?php echo 'print_r($_SESSION)の結果→   '; print_r($_SESSION); ?></pre>
 	<pre><?php echo 'print_r($_COOKIE)の結果→   '; print_r($_COOKIE); ?></pre>

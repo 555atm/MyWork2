@@ -1,6 +1,9 @@
 ﻿<?php
-/* ①セッションスタート ②ログインしてなければアクセスNGなのでログインページへ移動させる
-*/
+
+//// 0.ページが表示された時点で走る必須の処理
+
+//ログインしているかチェック
+
 session_start();
 require('../dbconnect.php');
 if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
@@ -14,8 +17,6 @@ if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 	header('Location: ../login.php');
 	exit();
 }
-/*
-*/
 
 // htmlspecialcharsのショートカット
 function h($value) {
@@ -37,7 +38,7 @@ function h($value) {
 <body>
 <div class="header">
 	<h1>3択クイズ!!</h1>
-	<h2><?php echo h($member['user_name']); ?>さんの挑戦結果:</h2>
+	<h2><?php echo h($_SESSION['member']['user_name']); ?>さんの挑戦結果:</h2>
 
 </div>
 
@@ -88,6 +89,7 @@ function h($value) {
 
 
 <div class=div_debug1>
+	<p>↓以下は開発用の記述です↓</p>
 	<pre><?php	echo 'var_dump($_SESSION)の結果→   ';	var_dump ($_SESSION); ?></pre>
 	<pre><?php echo 'print_r($_SESSION)の結果→   '; print_r($_SESSION); ?></pre>
 	<pre><?php echo 'print_r($_COOKIE)の結果→   '; print_r($_COOKIE); ?></pre>

@@ -1,4 +1,8 @@
 ﻿<?php
+
+//// 0.ページが表示された時点で走る必須の処理
+
+//ログイン中かチェック
 session_start();
 require('../dbconnect.php');
 if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
@@ -8,7 +12,7 @@ if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 	$members->execute(array($_SESSION['id']));
 	$member = $members->fetch();
 } else {
-	// ログインしていない
+	// ログインしていない場合
 	header('Location: ../login.php');
 	exit();
 }
@@ -49,7 +53,6 @@ function h($value) {
         <p>【確認】以下の内容でよろしければ投稿ボタンを押してください。</p>
         <div class="tategaki">
           <?php
-          //入力した内容は以下で良いか
           echo '上の句 ：  ' . $_SESSION['kamigo'] . '<br>';
           echo '中の句 ：  ' . $_SESSION['nakashichi'] . '<br>';
           echo '下の句 ：  ' . $_SESSION['shimogo'] . '<br>';
@@ -70,7 +73,6 @@ function h($value) {
           <input type="hidden" name="kamigo" value="<?php $_SESSION['kamigo'] ?>">
           <input type="hidden" name="nakashichi" value="<?php $_SESSION['nakashichi'] ?>">
           <input type="hidden" name="shimogo" value="<?php $_SESSION['shimogo'] ?>">
-          <!-- <a href="post.php" class="btn">投稿を修正する</a> -->
           <input type="submit" value="投稿" class="btn">
         </form>
       </div>
@@ -81,6 +83,7 @@ function h($value) {
     </div>
 
     <div class=div_debug1>
+      <p>以下は開発用の記述です</p>  
       <p>■今後の予定■</p>  
       <p>■デバッグ用（変数の確認)■</p>
       <pre><?php	echo 'var_dump($_SESSION)の結果→   ';	var_dump ($_SESSION); ?></pre>
@@ -88,8 +91,6 @@ function h($value) {
       <pre><?php echo 'print_r($_COOKIE)の結果→   '; print_r($_COOKIE); ?></pre>
       <pre><?php echo 'print_r($_POST)の結果→   '; print_r($_POST); ?></pre>
     </div>
-    <!-- 
-    -->
 
   </div>
 </body>

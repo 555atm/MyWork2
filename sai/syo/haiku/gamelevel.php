@@ -1,4 +1,8 @@
 ﻿<?php
+
+//// 0.ページが表示された時点で走る必須の処理
+
+//ログインしているかチェック
 session_start();
 require('../dbconnect.php');
 if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
@@ -19,9 +23,8 @@ function h($value) {
 }
 
 
-////イレギュラーな操作で『ランダム文字・俳句のセッションデータ』が残っていた場合に備えて、消去。
-//unset($_SESSION[’value’]);だと動くけど『今後良くない』とwarning出てしまうので、
-//$_SESSION[’value’] = array(); の形に修正した。
+//イレギュラーな操作で『ランダム文字・俳句のセッションデータ』が残っていた場合に備えて、消去。
+//ちなみにunset($_SESSION[’value’]);だと動くけど『今後良くない』とwarning出てしまうので、$_SESSION[’value’] = array(); の形に修正した。
 
 if(!empty($_SESSION['kami_random'])) {
   $_SESSION['kami_random'] = array();
@@ -40,6 +43,14 @@ if(!empty($_SESSION['nakashichi'])) {
 }
 if(!empty($_SESSION['shimogo'])) {
   $_SESSION['shimogo'] = array();
+}
+
+
+//// 1.ゲームレベルの『選択』ボタンでPOSTされたときの処理
+
+//ゲームレベルが３なら課題文字の有無をチェックする。ゲームレベル１なら、チェックしない。
+if (!empty($_POST['gamelevel'])){
+  $_SESSION['gamelevel'] = $_POST['gamelevel'];
 }
 
 
@@ -75,7 +86,9 @@ if(!empty($_SESSION['shimogo'])) {
   <p>ゲームレベルを選択してください</p>
     <form action="gamelevel.php" method="post">
     <label><input type="radio" name="gamelevel" value="gamelv1">[Lv1] 課題文字なし　　　　　　　　　　　　　</label><br>
+    <!-- ↓レベル２は余裕があったら追加。
     <label><input type="radio" name="gamelevel" value="gamelv2">[Lv2] 課題文字:上の句にひらがな1文字　　　　</label><br>
+    -->
     <label><input type="radio" name="gamelevel" value="gamelv3" checked>[Lv3] 課題文字: 上・中・下の句にそれぞれ1文字</label><br>
     <input type="hidden" name="nogamelevel" value="nogamelevel">
     <br>
@@ -101,7 +114,7 @@ if(!empty($_SESSION['shimogo'])) {
         return $r_str;
       }
 
-      // 選択されたゲームレベルを確認し、進む OR 【【選びなおす】】
+      //// 選択されたゲームレベルに応じて確認メッセージを表示し、次ページへ進む
       $formStart = '
       <form action="post.php" method="post">
       <input type="hidden" name="$subChar[]" value="$subChar[]">
@@ -174,10 +187,8 @@ if(!empty($_SESSION['shimogo'])) {
 
 
 <div class=div_debug1>
-  <p>■今後の予定■
-    ・\n
-    ・
-  </p>  
+  <p>↓以下は開発用の記述です↓</p>
+  <p>■今後の改修予定■ ・レベルは1,2だけにする（Lv1課題なし、Lv2各句に課題1文字</p>
   <p>■デバッグ用（変数の確認■</p>
   <pre><?php	echo 'var_dump($_SESSION)の結果→   ';	var_dump ($_SESSION); ?></pre>
   <pre><?php echo 'print_r($_SESSION)の結果→   '; print_r($_SESSION); ?></pre>
