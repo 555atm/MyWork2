@@ -26,11 +26,8 @@ function h($value) {
 $_SESSION['kotae'] = $_POST["kotae"];
 
 
-//↓開発用。あとで消す↓
-echo '【開発用】出題中のクイズIDは' . $_SESSION['syutsudai'][$_SESSION['syutsudai_index']] . 'で、全' . $_SESSION['zenbude'] . '問中の、第' . $_SESSION['monme'] . '問目、$_SESSION[syutsudai]のインデックスは' . $_SESSION['syutsudai_index'] .'です';
 
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,8 +99,7 @@ echo '【開発用】出題中のクイズIDは' . $_SESSION['syutsudai'][$_SESS
 	</div>
 				
 				
-<!-- 
-
+<!--
 	<div class=div_debug1>
 		<p>↓以下は開発用の記述です↓</p>
 		<pre><?php	echo 'var_dump($_SESSION)の結果→   ';	var_dump ($_SESSION); ?></pre>
@@ -111,7 +107,6 @@ echo '【開発用】出題中のクイズIDは' . $_SESSION['syutsudai'][$_SESS
 		<pre><?php echo 'print_r($_COOKIE)の結果→   '; print_r($_COOKIE); ?></pre>
 		<pre><?php echo 'print_r($_POST)の結果→   '; print_r($_POST); ?></pre>
 	</div>
-
 -->
 
 </body>

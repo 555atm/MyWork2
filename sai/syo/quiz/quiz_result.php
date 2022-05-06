@@ -24,7 +24,6 @@ function h($value) {
 }
 
 ?>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,77 +35,64 @@ function h($value) {
 <link rel="stylesheet" href="quiz.css" type="text/css">
 </head>
 <body>
-<div class="header">
-	<h1>3択クイズ!!</h1>
-	<h2><?php echo h($_SESSION['member']['user_name']); ?>さんの挑戦結果:</h2>
+	<div class="header">
+		<h1>3択クイズ!!</h1>
+		<h2><?php echo h($_SESSION['member']['user_name']); ?>さんの挑戦結果:</h2>
 
-</div>
+	</div>
 
-<div class="header_menu" style="text-align: right">
-			<a href="../menu.php" class="btn">TOPへ</a>
-			<a href="../logout.php" class="btn">ログアウト</a>
-</div>
+	<div class="header_menu" style="text-align: right">
+				<a href="../menu.php" class="btn">TOPへ</a>
+				<a href="../logout.php" class="btn">ログアウト</a>
+	</div>
 
-<div id="div1">
-	<dl>
-		<p class="large"><?php echo h($_SESSION['zenbude']); ?>問中、<?php echo $_SESSION['seikaisu']; ?>問正解でした。</p>
-			<?php
-				unset($_SESSION['syutsudai']);
-				unset($_SESSION['syutsudai_random']);
-				unset($_SESSION['quiz_count']);
-				unset($_SESSION['zenbude']);
-				unset($_SESSION['monme']);
-				unset($_SESSION['seikaisu']);
-				unset($_SESSION['syutsudai_index']);
-				unset($_SESSION['kotae']);
-				unset($_SESSION['question']);
-				unset($_SESSION['answer']);
-				unset($_SESSION['choice_a']);	
-				unset($_SESSION['choice_b']);
-				unset($_SESSION['choice_c']);
-				unset($_SESSION['genre']);
-				unset($_SESSION['commentary']);
-			?>
-		<p class="large">お疲れさまでした!!</p>
-		<img src="../images/otsukare.png" width="25%" height="25%"><br>
-		<a href="./quiz_genre.php" class="btn">クイズ選択へ戻る</a>
-		<br>
-		<br>
-	</dl>
-</div>
-
-
-<!-- 
-
-<div class="furikaeri">
-	<dl>
-		<dt>↓【工事中】問題をふりかえる↓</dt>
-				<dd>1問目：問題～～　正解：a　あなたの回答：a</dd>
-				<dd>2問目：問題～～　正解：a　あなたの回答：a</dd>
-				<dd>3問目：問題～～　正解：a　あなたの回答：a</dd>
-	</dl>
-</div>
-
-
-<div class=div_debug1>
-	<p>↓以下は開発用の記述です↓</p>
-	<pre><?php	echo 'var_dump($_SESSION)の結果→   ';	var_dump ($_SESSION); ?></pre>
-	<pre><?php echo 'print_r($_SESSION)の結果→   '; print_r($_SESSION); ?></pre>
-	<pre><?php echo 'print_r($_COOKIE)の結果→   '; print_r($_COOKIE); ?></pre>
-	<pre><?php echo 'print_r($_POST)の結果→   '; print_r($_POST); ?></pre>
-	<pre><?php echo 'var_dump($_POST)の結果→   '; var_dump($_POST); ?></pre>
-	<p><?php print_r($quiz);  ?></p>
-	<?php
-	function console_log($data){
-	  echo '<script>';
-	  echo 'console.log('.json_encode($data).')';
-	  echo '</script>';
-	}
-	console_log($_SESSION);
-	?>
-
-</div>
--->
+	<div id="div1">
+		<dl>
+			<p class="large"><?php echo h($_SESSION['zenbude']); ?>問中、<?php echo $_SESSION['seikaisu']; ?>問正解でした。</p>
+				<?php
+					unset($_SESSION['syutsudai']);
+					unset($_SESSION['syutsudai_random']);
+					unset($_SESSION['quiz_count']);
+					unset($_SESSION['zenbude']);
+					unset($_SESSION['monme']);
+					unset($_SESSION['seikaisu']);
+					unset($_SESSION['syutsudai_index']);
+					unset($_SESSION['kotae']);
+					unset($_SESSION['question']);
+					unset($_SESSION['answer']);
+					unset($_SESSION['choice_a']);	
+					unset($_SESSION['choice_b']);
+					unset($_SESSION['choice_c']);
+					unset($_SESSION['genre']);
+					unset($_SESSION['commentary']);
+				?>
+			<p class="large">お疲れさまでした!!</p>
+			<img src="../images/otsukare.png" width="25%" height="25%"><br>
+			<a href="./quiz_genre.php" class="btn">クイズ選択へ戻る</a>
+			<br>
+			<br>
+		</dl>
+	</div>
+		
+	<!-- 
+	<div class=div_debug1>
+		<p>↓以下は開発用の記述です↓</p>
+		<pre><?php	echo 'var_dump($_SESSION)の結果→   ';	var_dump ($_SESSION); ?></pre>
+		<pre><?php echo 'print_r($_SESSION)の結果→   '; print_r($_SESSION); ?></pre>
+		<pre><?php echo 'print_r($_COOKIE)の結果→   '; print_r($_COOKIE); ?></pre>
+		<pre><?php echo 'print_r($_POST)の結果→   '; print_r($_POST); ?></pre>
+		<pre><?php echo 'var_dump($_POST)の結果→   '; var_dump($_POST); ?></pre>
+		<p><?php print_r($quiz);  ?></p>
+		<?php
+		function console_log($data){
+			echo '<script>';
+			echo 'console.log('.json_encode($data).')';
+			echo '</script>';
+		}
+		console_log($_SESSION);
+		?>
+	</div>
+	-->
 
 </body>
 </html>

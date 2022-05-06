@@ -7,6 +7,7 @@ if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 	$members = $db->prepare('SELECT * FROM members WHERE id=?');
 	$members->execute(array($_SESSION['id']));
 	$member = $members->fetch();
+    $_SESSION['member'] = $member;
 } else {
 	// ログインしていない
 	header('Location: login.php');
@@ -33,6 +34,7 @@ function h($value) {
 <body>
 <div class="header">
 <h1>私のポートフォリオ</h1>
+<h2><?php echo h($_SESSION['member']['user_name']); ?>さん、ようこそ♪</h2>
 <div class="header_menu" style="text-align: right">
 			<a href="logout.php" class="btn">ログアウト</a>
 	</div>
@@ -41,7 +43,7 @@ function h($value) {
 <div class="wrapp">
   <div class="top_menu">
     <h2>メニュー</h2>
-    <label class="menu_btn">お遊び俳句ゲームに挑戦☆</label>
+    <label class="menu_btn">お遊び俳句ゲームに挑戦</label>
     <a href="./haiku/gamelevel.php" class="btn">START</a><br><br>
     <label class="menu_btn">お遊び俳句の作品を閲覧(工事中)</label>
     <a href="./haiku/haiku_read.php" class="btn">START</a><br><br>
@@ -52,7 +54,7 @@ function h($value) {
     <label class="menu_btn">クイズを投稿する</label>
     <a href="./quiz/quiz_post.php"  class="btn">START</a><br><br>
 
-    <label class="menu_btn">なんでも掲示板【一旦完成】</label>
+    <label class="menu_btn">しんぷる掲示板</label>
     <a href="./bbs.php" class="btn">START</a>
     <p>今後追加予定の機能
       ・いろいろ

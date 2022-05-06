@@ -36,13 +36,13 @@ if(!empty($_SESSION['shimo_random'])) {
   $_SESSION['shimo_random'] = array();
 }
 if(!empty($_SESSION['kamigo'])) {
-  $_SESSION['kamigo'] = array();
+  $_SESSION['kamigo'] = null;
 }
 if(!empty($_SESSION['nakashichi'])) {
-  $_SESSION['nakashichi'] = array();
+  $_SESSION['nakashichi'] = null;
 }
 if(!empty($_SESSION['shimogo'])) {
-  $_SESSION['shimogo'] = array();
+  $_SESSION['shimogo'] = null;
 }
 
 
@@ -86,11 +86,9 @@ if (!empty($_POST['gamelevel'])){
   <p>ゲームレベルを選択してください</p>
     <form action="gamelevel.php" method="post">
     <label><input type="radio" name="gamelevel" value="gamelv1">[Lv1] 課題文字なし　　　　　　　　　　　　　</label><br>
-    <!-- ↓レベル２は余裕があったら追加。
-    <label><input type="radio" name="gamelevel" value="gamelv2">[Lv2] 課題文字:上の句にひらがな1文字　　　　</label><br>
-    -->
     <label><input type="radio" name="gamelevel" value="gamelv3" checked>[Lv3] 課題文字: 上・中・下の句にそれぞれ1文字</label><br>
     <input type="hidden" name="nogamelevel" value="nogamelevel">
+    <label>　　　　　※[Lv2] 課題文字:上の句にひらがな1文字　は廃止※　　　　</label><br>
     <br>
     <label>  </label><input type="submit" value="選択">
     </form><br>

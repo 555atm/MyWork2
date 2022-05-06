@@ -148,7 +148,7 @@ while ($quiz = $questions->fetch()) {
   </div>
 
 
-  <!--
+  <!-- ↓メニュー３は廃止予定。
   <div id="div3">
     <p>メニュー3 ジャンルを選択してクイズを遊ぶ【未完成】</p>
     <?php
@@ -194,9 +194,9 @@ while ($quiz = $questions->fetch()) {
     <?php
     echo '【開発用】全クイズ件数は' . $_SESSION['quiz_count'] . '件です';
     ?>
-  -->
-
   </div>
+  ↑メニュー３は廃止予定。-->
+
 </div>
 
 

@@ -223,7 +223,7 @@ if (empty($errorKami) && empty($errorNaka) && empty($errorShimo) && !empty($_POS
 
     <form action="post.php" method="post">
       <label for="kamigo">上の句:</label>
-      <input type="text" id="kamigo" name="kamigo" size="40" value="<?php echo h($_SESSION['kamigo']); ?>"><br>
+      <input type="text" id="kamigo" name="kamigo" size="30" value="<?php echo h($_SESSION['kamigo']); ?>"><br>
         <?php
           //上の句の入力内容に何かしらエラー有れば、エラーメッセージをすべて表示する。
           if (!empty($errorKami)) {
@@ -232,7 +232,7 @@ if (empty($errorKami) && empty($errorNaka) && empty($errorShimo) && !empty($_POS
             }
           }
         ?>
-      <label for="nakashichi">　　　　　　　中の句:</label>
+      <label for="nakashichi">　　　 中の句:</label>
       <input type="text" id="nakashichi" name="nakashichi" size="40" value="<?php echo h($_SESSION['nakashichi']); ?>"><br>
         <?php 
           //中の句の入力内容に何かしらエラー有れば、エラーメッセージをすべて表示する。
@@ -243,7 +243,7 @@ if (empty($errorKami) && empty($errorNaka) && empty($errorShimo) && !empty($_POS
           }
         ?>  
       <label for="shomogo">下の句:</label>  
-      <input type="text" id="shimogo" name="shimogo"  size="40" value="<?php echo h($_SESSION['shimogo']); ?>">
+      <input type="text" id="shimogo" name="shimogo"  size="30" value="<?php echo h($_SESSION['shimogo']); ?>">
       <?php 
           //下の句の入力内容に何かしらエラー有れば、エラーメッセージをすべて表示する。
           if (!empty($errorShimo)) {
