@@ -6,10 +6,13 @@
 　
 【ログイン手順例】
 
-　pf.sqlをmysqlでインポート
+　・pf.sqlをmysql側でインポート　
+　　　（↑ローカルPCの場合のみ必要です。AWS EC2の場合は不要です。）
+　　　
+　・http://localhost/sai/syo/login.php　にアクセス
+		（AWS EC2の場合は　http://グローバルIPアドレス/syo/login.php　　　
 　　↓
-　http://localhost/sai/syo/login.php　にアクセス
-　　↓
-　id tanaka　pw tanaka　でログイン
-
+　id tanaka　
+　pw tanaka　でログイン
+　　（ローカル、AWS共通）
 　
