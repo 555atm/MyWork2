@@ -13,8 +13,11 @@ if (!empty($_POST)) {
 	if ($_POST['user_name'] == '') {
 		$error['user_name'] = 'blank';
 	}
-	if (strlen($_POST['password']) < 6) {
+	if (strlen($_POST['password']) < 8) {
 		$error['password'] = 'length';
+	}
+	if (!preg_match("/^[a-zA-Z0-9]+$/u", $_POST['password'])) {
+		$error['passwordCharType'] = 'charType';
 	}
 	if ($_POST['password'] == '') {
 		$error['password'] = 'blank';
@@ -77,7 +80,7 @@ $error['rewrite'] = true;
 		<p>次のフォームに必要事項をご記入ください。</p>
 		<form action="" method="post" enctype="multipart/form-data">
 		<dl>
-		<dt><span class="required">必須</span> ユーザー名</dt>
+		<dt><span class="required">必須</span> ユーザー名　　　　　　　　　　</dt>
 		<dd><input type="text" name="user_name" size="35" maxlength="255" value="<?php echo h($_POST['user_name']); ?>" required autofocus/>
 			<?php if ($error['user_name'] == 'blank'): ?>
 			<p class="error">* ニックネームを入力してください</p>
@@ -86,13 +89,16 @@ $error['rewrite'] = true;
 			<p class="error">* 入力されたユーザー名はすでに登録されています</p>
 			<?php endif; ?>
 		</dd>
-		<dt><span class="required">必須</span> パスワード ※6文字以上</dt>
+		<dt><span class="required">必須</span> パスワード ※半角英数8文字以上</dt>
 		<dd><input type="password" name="password" size="35" maxlength="20" value="<?php echo h($_POST['password']); ?>" required/>
       <?php if ($error['password'] == 'blank'): ?>
 				<p class="error">* パスワードを入力してください</p>
 			<?php endif; ?>
 			<?php if ($error['password'] == 'length'): ?>
-				<p class="error">* パスワードは6文字以上で入力してください</p>
+				<p class="error">* パスワードは8文字以上で入力してください</p>
+			<?php endif; ?>
+			<?php if ($error['passwordCharType'] == 'charType'): ?>
+				<p class="error">* パスワードは半角英数で入力してください</p>
 			<?php endif; ?>
 		</dd>
 		<dt><br> [任意] ユーザーのイメージ画像</dt>

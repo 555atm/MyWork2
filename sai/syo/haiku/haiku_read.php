@@ -33,7 +33,7 @@ function h($value) {
 	<div class="wrap">
 		<div class="header">
 			<h1>お遊び俳句ゲーム<h1>
-			<h1>投稿された俳句一覧（工事中）<h1>
+			<h1>投稿された俳句一覧<h1>
 			<div class="header_menu" style="text-align: right">
 							<a href="../menu.php" class="btn">TOPへ</a>
 							<a href="../logout.php" class="btn">ログアウト</a>
@@ -45,31 +45,44 @@ function h($value) {
 		</div>
 
   	<div class="haiku_list">
+			<table border="1">
+				<tr>
+					<th>　No</th>
+					<th>　上の句</th>
+					<th>　中の句</th>
+					<th>　下の句</th>
+					<th>　課題文字:上　</th>
+					<th>　課題文字:中　</th>
+					<th>　課題文字:下　</th>
+					<th>　投稿者　</th>
+				</tr>			
 
-				<label>| No.　上の句　　中の句　　下の句　｜　課題文字[上], 課題文字[中], 課題文字[下]</label><br>
-				<label>-------------------------------------------------------------------------------</label><br>
 				<?php
-				// 俳句を閲覧する
-						$haikus = $db->prepare('SELECT * FROM haiku');
-						$haikus->execute();
-						while ($haiku = $haikus->fetch()){						
-							echo $_SESSION['id'] =$haiku['id'] .'. ';
-							echo $_SESSION['kamigo'] =$haiku['kamigo'] .' ';
-							echo $_SESSION['nakashichi'] =$haiku['nakashichi'] .' ';
-							echo $_SESSION['shimogo'] =$haiku['shimogo'] .' ';
-							echo ($haiku['kami_random'] == null ? '　|　[上] 無　' : '　|　[上] ' . $_SESSION['kami_random'] =$haiku['kami_random'] .'　');
-							echo ($haiku['naka_random'] == null ? '[中] 無　' : '[中] ' . $_SESSION['naka_random'] =$haiku['naka_random'] .'　');
-							echo ($haiku['shimo_random'] == null ? '[下] 無　' : '[下] ' . $_SESSION['shimo_random'] =$haiku['shimo_random'] .'　');
-							echo '<br>';
-						}
+					// 俳句の一覧表を出力
+					$haikus = $db->prepare('SELECT h.id, h.kamigo, h.nakashichi, h.shimogo, h.kami_random, h.naka_random, h.shimo_random, m.user_name FROM haiku AS h,members AS m WHERE h.member_id = m.id');
+					$haikus->execute();
+					while ($haiku = $haikus->fetch()){
+						echo '<tr>';
+						echo '<td>　' . $_SESSION['id'] =$haiku['id'] . '　</td>';
+						echo '<td class="haiku_list">　' . $_SESSION['kamigo'] =$haiku['kamigo'] .'　</td>';
+						echo '<td class="haiku_list">　' . $_SESSION['nakashichi'] =$haiku['nakashichi'] .'　</td>';
+						echo '<td class="haiku_list">　' . $_SESSION['shimogo'] =$haiku['shimogo']  . '　</td>';
+						echo '<td class="haiku_list">' . ($haiku['kami_random'] == null ? '無し' : $_SESSION['kami_random'] =$haiku['kami_random'] .'</td>');
+						echo '<td class="haiku_list">' . ($haiku['naka_random'] == null ? '無し' : $_SESSION['naka_random'] =$haiku['naka_random'] .'</td>');
+						echo '<td class="haiku_list">' . ($haiku['shimo_random'] == null ? '無し' : $_SESSION['shimo_random'] =$haiku['shimo_random'] . '</td>');
+						echo '<td class="haiku_list">' . ($haiku['user_name'] == null ? 'null' : $haiku['user_name'] . '</td>');
+						echo '</tr>';
+					}
 				?>
+			</table>
 		</div>
 
 		<div class="footer">
 		  <p>　　　　　　　　　　</p>
 		</div>
 		
-		<div class=div_debug1>
+		<!--
+			<div class=div_debug1>
 			<p>■今後追加予定■
 				・ページング　・ソート機能　・コメント機能　・いいね機能
 			</p>  
@@ -80,6 +93,8 @@ function h($value) {
 			<pre><?php echo 'print_r($_COOKIE)の結果→   '; print_r($_COOKIE); ?></pre>
 			<pre><?php echo 'print_r($_POST)の結果→   '; print_r($_POST); ?></pre>
 		</div>
+		-->
+		
 	</div>
 
 </body>

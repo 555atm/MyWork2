@@ -7,7 +7,7 @@ if (isset($_SESSION['id']) && $_SESSION['time'] + 3600 > time()) {
 	$members = $db->prepare('SELECT * FROM members WHERE id=?');
 	$members->execute(array($_SESSION['id']));
 	$member = $members->fetch();
-    $_SESSION['member'] = $member;
+  $_SESSION['member'] = $member;
 } else {
 	// ログインしていない
 	header('Location: login.php');
@@ -45,7 +45,7 @@ function h($value) {
     <h2>メニュー</h2>
     <label class="menu_btn">お遊び俳句ゲームに挑戦</label>
     <a href="./haiku/gamelevel.php" class="btn">START</a><br><br>
-    <label class="menu_btn">お遊び俳句の作品を閲覧(工事中)</label>
+    <label class="menu_btn">お遊び俳句の作品を閲覧</label>
     <a href="./haiku/haiku_read.php" class="btn">START</a><br><br>
 
     <label class="menu_btn">クイズに挑戦！！</label>
@@ -56,45 +56,26 @@ function h($value) {
 
     <label class="menu_btn">しんぷる掲示板</label>
     <a href="./bbs.php" class="btn">START</a>
-    <p>今後追加予定の機能
-      ・いろいろ
-      ・
-    </p>
+    <br>
+    <br>
+
   </div>
 </div>
 
-
-
-
-<div id="slider">
-        <ul id="photos">
-            <li><img src="./images/sad.png" alt="Sample1" width="130" height="130"></li>
-            <li><img src="./images/glad.png" alt="Sample2" width="130" height="130"></li>
-        </ul>
-</div>
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            var $photos = $('#photos'),
-                $lis    = $('#photos li');
-
-            var li_count = $lis.length;
-            var li_width = $lis.width() + parseInt($lis.css('margin-left'), 10) + parseInt($lis.css('margin-right'), 10);
-
-            $photos.css('width', (li_width * li_count) + 'px');
-
-            setInterval(function () {
-                $photos.stop().animate({
-                    marginLeft: parseInt($photos.css('margin-left'), 10) - li_width + 'px'
-                }, function () {
-                    $photos.css('margin-left', '0px');
-                    $photos.find('li:first').appendTo($photos);
-                });
-            }, 1500);
-        });
-</script>
-
+<!--
+	<div class=div_debug1>
+		<p>■今後追加予定■
+			・ページング　・ソート機能　・コメント機能　・いいね機能
+		</p>  
+			
+			<p>■デバッグ用（変数の確認■</p>
+			<pre><?php	echo 'var_dump($_SESSION)の結果→   ';	var_dump ($_SESSION); ?></pre>
+			<pre><?php echo 'print_r($_SESSION)の結果→   '; print_r($_SESSION); ?></pre>
+			<pre><?php echo 'print_r($_COOKIE)の結果→   '; print_r($_COOKIE); ?></pre>
+			<pre><?php echo 'print_r($_POST)の結果→   '; print_r($_POST); ?></pre>
+		</div>
+	</div>
+-->
+	
 </body>
 </html>

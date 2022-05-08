@@ -99,7 +99,7 @@ function makeLink($value) {
   <div id="content">
 		<form action="" method="post">
 			<dl>
-				<dt><?php echo h($member['user_name']); ?>さん、メッセージをどうぞ
+				<dt><?php echo h($_SESSION['member']['user_name']); ?>さん、メッセージをどうぞ
 			</dt>
 				<dd>
 					<!-- ↓返信対象のコメントを取り出し先頭に@をつけた（if (isset($_REQUEST['res']）ので、それをtextareaへ。 -->	

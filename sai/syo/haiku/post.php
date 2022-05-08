@@ -278,47 +278,42 @@ if (empty($errorKami) && empty($errorNaka) && empty($errorShimo) && !empty($_POS
 </div>
 
 
-
+<!-- 
   <div class=div_debug1>
     <?php
-/////入力文字チェック【絶対消すな！！】////////////////////////////////////////
-////////////////////////////////////////////////////////////
-echo '<p>■以下、debug用■</p>';
-echo '<p>総合チェック</p>';
-echo '【チェック①文字数】 入力した文字数は上の句-' . $mojinokazukami .",中の句-" .  $mojinokazunaka .",下の句-" .  $mojinokazushimo . 'です';
-echo '<br>';
-echo '【チェック②（内部用）】小さいゃゅょﾔﾕﾖの数は' . $yayuyonokazukami ."," . $yayuyonokazunaka ."," . $yayuyonokazushimo;
-echo '<br>';
-echo '【チェック③】「音数」は上の句-' .  $otonokazukami .",中の句-" . $otonokazunaka .",下の句-" . $otonokazushimo .'です';
-echo '<br>';
+      /////入力文字チェック【絶対消すな！！】////////////////////////////////////////
+      ////////////////////////////////////////////////////////////
+      echo '<p>■以下、debug用■</p>';
+      echo '<p>総合チェック</p>';
+      echo '【チェック①文字数】 入力した文字数は上の句-' . $mojinokazukami .",中の句-" .  $mojinokazunaka .",下の句-" .  $mojinokazushimo . 'です';
+      echo '<br>';
+      echo '【チェック②（内部用）】小さいゃゅょﾔﾕﾖの数は' . $yayuyonokazukami ."," . $yayuyonokazunaka ."," . $yayuyonokazushimo;
+      echo '<br>';
+      echo '【チェック③】「音数」は上の句-' .  $otonokazukami .",中の句-" . $otonokazunaka .",下の句-" . $otonokazushimo .'です';
+      echo '<br>';
+      ?>
 
-?>
-
-
-  <p>■今後の予定■
-    ・条件を満たさないと投稿できないようにする
-    　　①jsのほうが良い？（ajax覚えた方が早い？？？？）
-    　　②音数チェック
-    　　・ゲーム開始時にエラーが出てしまう
-    　　③不要なセッション項目のクリア箇所は完璧か確認
-        ④二重送信への対応
-          <!-- 本当は、ひらがな５７５を補足する、漢字カタカナ交じりを入力する機能をつけたい。 
-        <label for="nakashichi">全体(ひらがなを漢字交じりにしたもの): ※漢字OK</label></br>   
-        <textarea id="zentai" name="zentai" rows="10" cols="40" ></textarea><br>
+    <p>■今後の予定■
+      ・条件を満たさないと投稿できないようにする
+      　　①jsのほうが良い？（ajax覚えた方が早い？？？？）
+      　　②音数チェック
+      　　・ゲーム開始時にエラーが出てしまう
+      　　③不要なセッション項目のクリア箇所は完璧か確認
+          ④二重送信への対応
+            <!-- 本当は、ひらがな５７５を補足する、漢字カタカナ交じりを入力する機能をつけたい。 
+          <label for="nakashichi">全体(ひらがなを漢字交じりにしたもの): ※漢字OK</label></br>   
+          <textarea id="zentai" name="zentai" rows="10" cols="40" ></textarea><br>
+        </p>  
+        <p>■デバッグ用（変数の確認)■</p>
+        <pre><?php	echo 'var_dump($_SESSION)の結果→   ';	var_dump ($_SESSION); ?></pre>
+        <pre><?php echo 'print_r($_SESSION)の結果→   '; print_r($_SESSION); ?></pre>
+        <pre><?php echo 'print_r($_COOKIE)の結果→   '; print_r($_COOKIE); ?></pre>
+        <pre><?php echo 'print_r($_POST)の結果→   '; print_r($_POST); ?></pre>
+        <pre><?php echo 'print_r($errorKami)の結果→   '; print_r($errorKami); ?></pre>
+        <pre><?php echo 'print_r($errornaka)の結果→   '; print_r($errorNaka); ?></pre>
+        <pre><?php echo 'print_r($errorshimo)の結果→   '; print_r($errorShimo); ?></pre>
       -->
-  </p>  
-  <p>■デバッグ用（変数の確認)■</p>
-  <pre><?php	echo 'var_dump($_SESSION)の結果→   ';	var_dump ($_SESSION); ?></pre>
-  <pre><?php echo 'print_r($_SESSION)の結果→   '; print_r($_SESSION); ?></pre>
-  <pre><?php echo 'print_r($_COOKIE)の結果→   '; print_r($_COOKIE); ?></pre>
-  <pre><?php echo 'print_r($_POST)の結果→   '; print_r($_POST); ?></pre>
-  <pre><?php echo 'print_r($errorKami)の結果→   '; print_r($errorKami); ?></pre>
-  <pre><?php echo 'print_r($errornaka)の結果→   '; print_r($errorNaka); ?></pre>
-  <pre><?php echo 'print_r($errorshimo)の結果→   '; print_r($errorShimo); ?></pre>
-  
-  
 </div>
-<!-- 
 
 -->
 

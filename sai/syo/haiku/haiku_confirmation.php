@@ -82,6 +82,7 @@ function h($value) {
       <p>　　　　　　　　　　</p>
     </div>
 
+    <!--
     <div class=div_debug1>
       <p>以下は開発用の記述です</p>  
       <p>■今後の予定■</p>  
@@ -91,6 +92,7 @@ function h($value) {
       <pre><?php echo 'print_r($_COOKIE)の結果→   '; print_r($_COOKIE); ?></pre>
       <pre><?php echo 'print_r($_POST)の結果→   '; print_r($_POST); ?></pre>
     </div>
+    -->
 
   </div>
 </body>

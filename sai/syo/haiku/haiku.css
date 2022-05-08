@@ -85,6 +85,10 @@ div.haiku_list {
   width:85%;
 }
 
+td.haiku_list {
+  font-size: 1.4rem;
+  font-family:'HG行書体';
+}
 
 .std_image{
 	width:220px;

@@ -64,7 +64,7 @@
 				<p class="std_image"><img src="../images/sideways.png" width="90%" height="90%" alt="sideways" title="sideways"></p>
 				<div class="header_menu" style="text-align: right">
 					<a href="../menu.php" class="btn">TOPへ</a>
-					<a href="logout.php" class="btn">ログアウト</a>
+					<a href="../logout.php" class="btn">ログアウト</a>
 				</div>
 	</div>
 

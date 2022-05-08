@@ -201,7 +201,8 @@ while ($quiz = $questions->fetch()) {
 
 
 
-
+<!-- 
+  
 <div class=div_debug1>
     <p>↓以下は開発用の記述です↓</p>
     <p>■今後の予定■
@@ -231,8 +232,6 @@ while ($quiz = $questions->fetch()) {
     <pre><?php echo 'print_r($_COOKIE)の結果→   '; print_r($_COOKIE); ?></pre>
     <pre><?php echo 'print_r($_POST)の結果→   '; print_r($_POST); ?></pre>
   </div>
-<!-- 
-
 -->
 
 </body>

@@ -85,10 +85,10 @@ if (!empty($_POST['gamelevel'])){
   <br>
   <p>ゲームレベルを選択してください</p>
     <form action="gamelevel.php" method="post">
-    <label><input type="radio" name="gamelevel" value="gamelv1">[Lv1] 課題文字なし　　　　　　　　　　　　　</label><br>
-    <label><input type="radio" name="gamelevel" value="gamelv3" checked>[Lv3] 課題文字: 上・中・下の句にそれぞれ1文字</label><br>
+    <label><input type="radio" name="gamelevel" value="gamelv3" checked>[Lv3] 課題文字: 上・中・下の句にそれぞれ1文字　★オススメ！</label><br>
+    <label><input type="radio" name="gamelevel" value="gamelv1">[Lv1] 課題文字なし　　　　　　　　　　　　　　　　　　　　</label><br>
     <input type="hidden" name="nogamelevel" value="nogamelevel">
-    <label>　　　　　※[Lv2] 課題文字:上の句にひらがな1文字　は廃止※　　　　</label><br>
+    <label>　　　　　※[Lv2] 課題文字:上の句にひらがな1文字　は廃止する予定※　　　　</label><br>
     <br>
     <label>  </label><input type="submit" value="選択">
     </form><br>
@@ -183,7 +183,7 @@ if (!empty($_POST['gamelevel'])){
   <p>　　　　　　　　　　</p>
 </div>
 
-
+<!--
 <div class=div_debug1>
   <p>↓以下は開発用の記述です↓</p>
   <p>■今後の改修予定■ ・レベルは1,2だけにする（Lv1課題なし、Lv2各句に課題1文字</p>
@@ -193,6 +193,7 @@ if (!empty($_POST['gamelevel'])){
   <pre><?php echo 'print_r($_COOKIE)の結果→   '; print_r($_COOKIE); ?></pre>
   <pre><?php echo 'print_r($_POST)の結果→   '; print_r($_POST); ?></pre>
 </div>
+-->
 
 </body>
 </html>
